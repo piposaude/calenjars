@@ -1,0 +1,20 @@
+name: pull-request-checks
+on:
+  pull_request:
+      branches:
+        - main
+  workflow_dispatch:
+
+
+jobs:
+  format-check:
+    name: 'Format Check'
+    uses: ./.github/workflows/setup-and-run-script.yml
+    with:
+      script: ./bin/fmt-check
+
+  unit-test:
+    name: 'Unit Tests'
+    uses: ./.github/workflows/setup-and-run-script.yml
+    with:
+      script: ./bin/eftest
